@@ -10,7 +10,7 @@ import UIKit
 
 class TodoListViewController: UITableViewController {
     
-    let itemArray = ["Find wWho Killed Dory", "Buy Gun", "Destory it"]
+    let itemArray = ["Find Who Killed Dory", "Buy Gun", "Destory it"]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +26,19 @@ class TodoListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemArray.count
+    }
+
+    //MARK - Tableview Datasource Methods
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(itemArray[indexPath.row])
+        
+        if tableView.cellForRow(at: indexPath)?.accessoryType == .checkmark {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+        }else{
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+        }
+
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
 }
